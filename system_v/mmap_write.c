@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 	fd = open(argv[1], O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (fd == -1)
 		ERR_EXIT("open");
-
+	//ensure file size is large enough to save memory data
 	lseek(fd, sizeof(STU)*5-1, SEEK_SET);
 	write(fd, "", 1);
 	
