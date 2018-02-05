@@ -7,7 +7,7 @@
 #include "ftpproto.h"
 #include "ftpcodes.h"
 #include "hash_link.h"
-
+#include <unistd.h> 
 
 extern session_t* p_sess;
 static unsigned int cur_childrens;
@@ -115,7 +115,7 @@ void handle_sigchld(int sig)
 	// 如果多个子进程同时断开连接
 	while ((pid = waitpid(-1 ,NULL, WNOHANG)) > 0)
 	{
-		unsigned int* ip = hash_lookup_entry(s_pid_ip_hash, &pid, sizeof(pid));
+		unsigned int* ip = (unsigned int*)hash_lookup_entry(s_pid_ip_hash, &pid, sizeof(pid));
 		if (ip == NULL)
 		{
 			continue;
@@ -155,7 +155,7 @@ unsigned int handle_ip_count(void *ip)
 {
 	unsigned int count;
 	unsigned int* ip_count;
-	ip_count = hash_lookup_entry(s_ip_count_hash, ip, sizeof(unsigned int));
+	ip_count = (unsigned int*)hash_lookup_entry(s_ip_count_hash, ip, sizeof(unsigned int));
 
 	if (ip_count == NULL)
 	{
@@ -176,7 +176,7 @@ void drop_ip_count(void* ip)
 {
 	unsigned int count;
 	unsigned int* ip_count;
-	ip_count = hash_lookup_entry(s_ip_count_hash, ip, sizeof(unsigned int));
+	ip_count = (unsigned int*)hash_lookup_entry(s_ip_count_hash, ip, sizeof(unsigned int));
 
 	if (ip_count == NULL)
 	{
