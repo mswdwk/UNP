@@ -140,6 +140,4 @@ void threadpool_destroy(threadpool_t *pool)
 	}
 	condition_unlock(&pool->ready);
 	condition_destroy(&pool->ready);
-
-
 }
