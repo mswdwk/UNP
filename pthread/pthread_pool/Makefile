@@ -1,7 +1,8 @@
-﻿.PHONY:clean
+﻿.PHONY:clean all
 CC=gcc
 CFLAGS=-Wall -g
 ALL=main
+
 all:$(ALL)
 OBJS=threadpool.o main.o condition.o
 .c.o:
