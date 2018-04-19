@@ -492,7 +492,7 @@ ssize_t readline(int sockfd, void* buf, size_t maxline)
 				if (ret != i+1)
 					exit(EXIT_FAILURE);
 
-				bufp[i＋1] = '\0';
+				bufp[i + 1] = '\0';
 				return ret + count;
 			}
 		}
